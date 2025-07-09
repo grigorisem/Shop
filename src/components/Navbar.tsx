@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 
 type NavItem = 'Депеш' | 'Мужское' | 'Женское' | null;
 
@@ -14,7 +14,7 @@ export const Navbar = () => {
   return (
     <div className="relative">
       <nav
-        className="flex space-x-10 px-8 py-4 bg-black text-white text-lg relative z-20"
+        className="flex space-x-10 px-8 py-4 bg-black text-white text-lg relative z-20 justify-center"
         onMouseDownCapture={() => setActiveItem(null)}
       >
         {(['Депеш', 'Мужское', 'Женское'] as Exclude<NavItem, null>[]).map((item) => (
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
       {activeItem && (
         <div
-          className="absolute left-0 top-full w-full bg-white h-[300px] shadow-xl z-10"
+          className="absolute left-0 top-full w-full bg-white h-[250px] shadow-xl z-10"
           onMouseLeave={() => setActiveItem(null)}
         >
           <div className="flex justify-center items-start h-full pt-12">
