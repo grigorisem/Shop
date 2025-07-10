@@ -10,6 +10,7 @@ export const Header = () => {
                         <nav className="navbar">
                             <Navbar />
                         </nav>
+                        <div className='search'></div>
                     </div>
                 </div>
             </>
