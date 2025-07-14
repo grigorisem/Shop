@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-type NavItem = 'Депеш' | 'Мужское' | 'Женское' | null;
+type NavItem = 'Коллабы' | 'Мужское' | 'Женское' | null;
 
 const dropdownContent: Record<Exclude<NavItem, null>, string[]> = {
-  'Депеш': ['Дропы 2025', 'Дропы 2024', 'Дропы 2023'],
+  'Коллабы': ['Дропы 2025', 'Дропы 2024', 'Дропы 2023'],
   'Мужское': ['Футболки', 'Худи', 'Шарфы', 'Обувь'],
   'Женское': ['Футболки', 'Худи', 'Шарфы', 'Платья', 'Обувь'],
 };
@@ -14,10 +14,10 @@ export const Navbar = () => {
   return (
     <div className="relative">
       <nav
-        className="flex space-x-10 px-8 py-4 bg-black text-white text-lg relative z-20 justify-center"
+        className="flex space-x-10 px-8 py-4 text-black text-md relative z-20 justify-center"
         onMouseDownCapture={() => setActiveItem(null)}
       >
-        {(['Депеш', 'Мужское', 'Женское'] as Exclude<NavItem, null>[]).map((item) => (
+        {(['Коллабы', 'Мужское', 'Женское'] as Exclude<NavItem, null>[]).map((item) => (
           <div
             key={item}
             className="cursor-pointer hover:text-gray-300"
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
       {activeItem && (
         <div
-          className="absolute left-0 top-full w-full bg-white h-[250px] shadow-xl z-10"
+          className="top-full w-full bg-white h-[250px] shadow-xl"
           onMouseLeave={() => setActiveItem(null)}
         >
           <div className="flex justify-center items-start h-full pt-12">
