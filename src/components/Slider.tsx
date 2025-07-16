@@ -1,5 +1,6 @@
 import { useState, useEffect, Children } from "react";
-import type { ReactNode } from "react";
+import CIcon from '@coreui/icons-react';
+import { cilArrowRight, cilArrowLeft } from '@coreui/icons';import type { ReactNode } from "react";
 interface SliderProps {
   children: ReactNode;
   autoSlide?: boolean;
@@ -45,13 +46,13 @@ export const Slider = ({ children, autoSlide = true, autoSlideInterval = 10000 }
         onClick={prevSlide}
         className="absolute left-5 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 px-3 py-2 rounded-full hover:bg-opacity-100 transition z-10"
       >
-        ←
+      <CIcon icon={cilArrowLeft} className="w-5 h-5 text-gray-800" />
       </button>
       <button
         onClick={nextSlide}
         className="absolute right-5 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 px-3 py-2 rounded-full hover:bg-opacity-100 transition z-10"
       >
-        →
+        <CIcon icon={cilArrowRight} className="w-5 h-5 text-gray-800" />
       </button>
     </div>
   );
