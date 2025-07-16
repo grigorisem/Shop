@@ -24,7 +24,10 @@ function App() {
         {
           slides.map(
             (s) => (
-              <img src={s}></img>
+              <img 
+                src={s}
+                className="w-full h-full object-cover object-center rounded-2xl max-h-[700px]"
+              />
             )
           )
         }

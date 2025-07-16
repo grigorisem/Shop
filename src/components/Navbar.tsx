@@ -12,9 +12,9 @@ export const Navbar = () => {
   const [activeItem, setActiveItem] = useState<NavItem>(null);
 
   return (
-    <div className="relative">
+    <div className="relative z-40">
       <nav
-        className="flex space-x-10 px-8 py-4 text-black text-md relative z-20 justify-center"
+        className="flex space-x-10 px-8 py-4 text-black text-md z-30 justify-center"
         onMouseDownCapture={() => setActiveItem(null)}
       >
         {(['Коллабы', 'Мужское', 'Женское'] as Exclude<NavItem, null>[]).map((item) => (
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
       {activeItem && (
         <div
-          className="top-full w-full bg-white h-[250px] shadow-xl"
+          className="absolute left-0 w-full bg-white h-[250px] shadow-xl z-30"
           onMouseLeave={() => setActiveItem(null)}
         >
           <div className="flex justify-center items-start h-full pt-12">
