@@ -1,6 +1,7 @@
 import { useState, useEffect, Children } from "react";
 import CIcon from '@coreui/icons-react';
-import { cilArrowRight, cilArrowLeft } from '@coreui/icons';import type { ReactNode } from "react";
+import { cilArrowRight, cilArrowLeft } from '@coreui/icons';
+import type { ReactNode } from "react";
 interface SliderProps {
   children: ReactNode;
   autoSlide?: boolean;
