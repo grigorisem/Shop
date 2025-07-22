@@ -9,6 +9,7 @@ import slide3 from './assets/img/slide3.webp'
 import slide4 from './assets/img/converse.webp'
 import slide5 from './assets/img/rickowens.webp'
 import slide6 from './assets/img/kobe6grinch.jpg'
+import { NewGoods } from './components/NewGoods'
 
 const slides = [
     slide1, 
@@ -51,6 +52,19 @@ function App() {
             )
           }
       </Goods>
+      <NewGoods>
+        {
+          slides.map(
+            (s, index) => (
+              <img 
+                key={`newgoods-${index}`}
+                src={s}
+                className="w-full h-full object-center rounded-2xl max-h-[500px] object-cover"
+              />
+            )
+          )
+        }
+      </NewGoods>
     </>
   )
 }
