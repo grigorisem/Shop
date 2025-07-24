@@ -19,6 +19,7 @@ const slides = [
     slide5,
     slide6,
 ];
+let newGoodsSlides = slides.slice(-4).map((x) => x);
 
 function App() {
 
@@ -54,7 +55,7 @@ function App() {
       </Goods>
       <NewGoods>
         {
-          slides.map(
+          newGoodsSlides.slice(-4).map(
             (s, index) => (
               <img 
                 key={`newgoods-${index}`}
