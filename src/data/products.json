@@ -1,0 +1,57 @@
+[
+  {
+    "id": 0,
+    "title": "Nike Air Max",
+    "price": 29990,
+    "description": "Кроссовки с воздушной подошвой для повседневной носки",
+    "category": "Обувь",
+    "inStock": true,
+    "image": "../assets/img/slide1.jpg"
+  },
+  {
+    "id": 1,
+    "title": "Converse Classic",
+    "price": 19990,
+    "description": "Классические высокие Converse белого цвета",
+    "category": "Обувь",
+    "inStock": true,
+    "image": "../assets/img/slide2.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Rick Owens DRKSHDW",
+    "price": 84990,
+    "description": "Премиальные кеды от Rick Owens из коллекции DRKSHDW",
+    "category": "Обувь",
+    "inStock": false,
+    "image": "../assets/img/slide3.webp"
+  },
+  {
+    "id": 3,
+    "title": "Kobe 6 Grinch",
+    "price": 59990,
+    "description": "Легендарные баскетбольные кроссовки Kobe 6 в расцветке Grinch",
+    "category": "Обувь",
+    "inStock": true,
+    "image": "../assets/img/converse.webp"
+  },
+  {
+    "id": 4,
+    "title": "Yeezy Boost 350",
+    "price": 65990,
+    "description": "Популярные кроссовки от Kanye West и Adidas",
+    "category": "Обувь",
+    "inStock": false,
+    "image": "../assets/img/rickowens.webp"
+  },
+  {
+    "id": 5,
+    "title": "Jordan 1 Retro",
+    "price": 49990,
+    "description": "Классические кроссовки Jordan в ретро-дизайне",
+    "category": "Обувь",
+    "inStock": true,
+    "image": "../assets/img/kobe6grinch.jpg"
+  }
+]
+

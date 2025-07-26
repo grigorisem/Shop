@@ -11,6 +11,13 @@ import slide5 from './assets/img/rickowens.webp'
 import slide6 from './assets/img/kobe6grinch.jpg'
 import { NewGoods } from './components/NewGoods'
 
+interface Product {
+  id: number;
+  image: string;
+  title: string;
+}
+
+
 const slides = [
     slide1, 
     slide2,
@@ -19,7 +26,39 @@ const slides = [
     slide5,
     slide6,
 ];
-let newGoodsSlides = slides.slice(-4).map((x) => x);
+const goodsData: Product[] = [
+  {
+    id: 0,
+    image: slide1,
+    title: 'Nike Air Max'
+  },
+  {
+    id: 1,
+    image: slide2,
+    title: 'Converse Classic'
+  },
+  {
+    id: 2,
+    image: slide3,
+    title: 'Rick Owens DRKSHDW'
+  },
+  {
+    id: 3,
+    image: slide4,
+    title: 'Kobe 6 Grinch'
+  },
+  {
+    id: 4,
+    image: slide5,
+    title: 'Kobe 6 Grinch'
+  },
+  {
+    id: 5,
+    image: slide6,
+    title: 'Kobe 6 Grinch'
+  },
+];
+
 
 function App() {
 
@@ -41,29 +80,45 @@ function App() {
         }
       </Slider>
       <Goods>
-        {
-          slides.map(
-              (s, index) => (
-                <img 
-                  key={`goods-${index}`}
-                  src={s}
-                  className="w-full h-full object-center rounded-2xl max-h-[500px] object-cover"
-                />
-              )
-            )
-          }
+         {
+            goodsData.map((item, index) => (
+            <div key={`newgoods-${index}`} className="flex flex-col items-center">
+              <img 
+                src={item.image}
+                alt={item.title}
+                className="w-full h-[200px] object-cover rounded-xl"
+              />
+              <div className="mt-2 text-center text-sm font-medium">
+                {item.title}
+              </div>
+              <button
+                className="mt-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+              >
+                Подробнее
+              </button>
+            </div>
+          ))
+        }
       </Goods>
       <NewGoods>
         {
-          newGoodsSlides.slice(-4).map(
-            (s, index) => (
+          goodsData.slice(-4).map((item, index) => (
+            <div key={`newgoods-${index}`} className="flex flex-col items-center">
               <img 
-                key={`newgoods-${index}`}
-                src={s}
-                className="w-full h-full object-center rounded-2xl max-h-[500px] object-cover"
+                src={item.image}
+                alt={item.title}
+                className="w-full h-[200px] object-cover rounded-xl"
               />
-            )
-          )
+              <div className="mt-2 text-center text-sm font-medium">
+                {item.title}
+              </div>
+              <button
+                className="mt-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+              >
+                Подробнее
+              </button>
+            </div>
+          ))
         }
       </NewGoods>
     </>

@@ -19,7 +19,6 @@ export const NewGoods = ({children}:NewGoods) => {
                                 {newgood}
                             </div>
                         )
-
                         ) 
                     }
                 </div>
