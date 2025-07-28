@@ -86,7 +86,7 @@ function App() {
               <img 
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[200px] object-cover rounded-xl"
+                className="w-full h-[350px] object-cover rounded-xl"
               />
               <div className="mt-2 text-center text-sm font-medium">
                 {item.title}
@@ -107,7 +107,7 @@ function App() {
               <img 
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[200px] object-cover rounded-xl"
+                className="w-full h-[300px] object-cover rounded-xl"
               />
               <div className="mt-2 text-center text-sm font-medium">
                 {item.title}

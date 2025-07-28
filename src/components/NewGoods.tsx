@@ -15,7 +15,7 @@ export const NewGoods = ({children}:NewGoods) => {
                     <div className="grid grid-cols-4 gap-[5px] m-auto" >
                     {
                         newGoodsArray.map((newgood, index) => (
-                            <div className="max-w-[200px] max-h-[300px] w-full h-full" key={index}>
+                            <div className="max-w-[300px] max-h-[400px] w-full h-full" key={index}>
                                 {newgood}
                             </div>
                         )
