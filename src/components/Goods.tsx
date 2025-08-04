@@ -10,23 +10,23 @@ export const Goods = ({children}: GoodsProps ) => {
     const smallCards = goodsArray.slice(2);
     return (
         <>
-          <div className="newgoods px-6">
-          <div className="text-2xl font-semibold mb-4">Новые поступления</div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="newgoods">
+          <div className="text-2xl font-semibold mb-4 px-6">Новые поступления</div>
+          <div className="flex flex-wrap w-full">
             {bigCards.map((item, index) => (
               <div
                 key={`big-${index}`}
-                className="w-full h-[500px] bg-gray-100 rounded-xl overflow-hidden"
+                className="relative w-full md:w-1/2 h-[800px] overflow-hidden"
               >
                 {item}
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6 mt-10">
             {smallCards.map((item, index) => (
               <div
                 key={`small-${index}`}
-                className="max-w-[300px] w-full h-[420px] mx-auto bg-gray-50 rounded-lg"
+                className="max-w-[400px] w-full max-h-[500px] h-full mx-auto bg-gray-50 rounded-lg"
               >
                 {item}
               </div>

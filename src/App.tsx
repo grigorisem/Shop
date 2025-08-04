@@ -1,66 +1,19 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Catalog} from "./pages/Catalog.tsx";
+//import ProductPage from "./pages/ProductPage";
+//import NotFound from "./pages/NotFound";
+
 import { Header } from './components/Header'
 import { NavbarRegistration } from './components/NavbarRegistration'
 import { Slider } from './components/Slider'
 import { Goods } from './components/Goods'
-import slide1 from './assets/img/slide1.jpg'
-import slide2 from './assets/img/slide2.jpg'
-import slide3 from './assets/img/slide3.webp'
-import slide4 from './assets/img/converse.webp'
-import slide5 from './assets/img/rickowens.webp'
-import slide6 from './assets/img/kobe6grinch.jpg'
+
 import { NewGoods } from './components/NewGoods'
-
-interface Product {
-  id: number;
-  image: string;
-  title: string;
-}
+import { productsData, slides} from "./data/productsData.tsx";
 
 
-const slides = [
-    slide1, 
-    slide2,
-    slide3,
-    slide4,
-    slide5,
-    slide6,
-];
-const goodsData: Product[] = [
-  {
-    id: 0,
-    image: slide1,
-    title: 'Nike Air Max'
-  },
-  {
-    id: 1,
-    image: slide2,
-    title: 'Converse Classic'
-  },
-  {
-    id: 2,
-    image: slide3,
-    title: 'Rick Owens DRKSHDW'
-  },
-  {
-    id: 3,
-    image: slide4,
-    title: 'Kobe 6 Grinch'
-  },
-  {
-    id: 4,
-    image: slide5,
-    title: 'Kobe 6 Grinch'
-  },
-  {
-    id: 5,
-    image: slide6,
-    title: 'Kobe 6 Grinch'
-  },
-];
-
-
-function App() {
+function HomePage() {
 
   return (
     <>
@@ -81,19 +34,22 @@ function App() {
       </Slider>
       <Goods>
          {
-            goodsData.map((item, index) => (
-            <div key={`newgoods-${index}`} className="flex flex-col items-center">
-              <img 
+            productsData.map((item, index) => (
+              <div
+              key={`goods-${index}`}
+              className={`relative w-full h-full ${
+                index < 2 ? 'h-[800px]' : 'h-[420px]'
+              }`}
+              >
+              <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[350px] object-cover rounded-xl"
+                className="w-full h-full object-cover"
               />
-              <div className="mt-2 text-center text-sm font-medium">
+              <div className="absolute bottom-[60px] left-[30px] text-white text-lg font-semibold bg-black/60 px-3 py-1 rounded">
                 {item.title}
               </div>
-              <button
-                className="mt-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
-              >
+              <button className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
                 Подробнее
               </button>
             </div>
@@ -102,19 +58,22 @@ function App() {
       </Goods>
       <NewGoods>
         {
-          goodsData.slice(-4).map((item, index) => (
-            <div key={`newgoods-${index}`} className="flex flex-col items-center">
-              <img 
+          productsData.slice(-4).map((item, index) => (
+            <div
+              key={`goods-${index}`}
+              className={`relative w-full h-full ${
+                index < 2 ? 'h-[800px]' : 'h-[500px]'
+              }`}
+              >
+              <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[300px] object-cover rounded-xl"
+                className="w-full h-full object-cover"
               />
-              <div className="mt-2 text-center text-sm font-medium">
+              <div className="absolute bottom-[60px] left-[30px] text-white text-lg font-semibold bg-black/60 px-3 py-1 rounded">
                 {item.title}
               </div>
-              <button
-                className="mt-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
-              >
+              <button className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
                 Подробнее
               </button>
             </div>
@@ -124,5 +83,18 @@ function App() {
     </>
   )
 }
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/catalog" element={<Catalog />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Routes>
+    </Router>
+  );
+}
+
 
 export default App
