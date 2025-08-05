@@ -4,6 +4,7 @@ import slide3 from '../assets/img/slide3.webp';
 import slide4 from '../assets/img/converse.webp';
 import slide5 from '../assets/img/rickowens.webp';
 import slide6 from '../assets/img/kobe6grinch.jpg';
+import slide7 from '../assets/img/tennistee.jpg'
 
 export type ProductType = 'Обувь' | 'Футболки' | 'Худи';
 export type ProductYear = 2023 | 2024 | 2025;
@@ -17,7 +18,7 @@ export interface Product {
 }
 
 export const slides = [
-  slide1, slide2, slide3, slide4, slide5, slide6,
+  slide1, slide2, slide3, slide4, slide5, slide6, slide7
 ];
 
 export const productsData: Product[] = [
@@ -62,5 +63,12 @@ export const productsData: Product[] = [
     title: 'Kobe 6 Grinch',
     type: 'Обувь',
     year: 2025,
+  },
+  {
+    id: 6,
+    image: slide7,
+    title: 'Nike Tee',
+    type: 'Футболки',
+    year: 2024,
   },
 ];
