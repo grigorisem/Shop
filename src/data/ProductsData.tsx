@@ -8,6 +8,7 @@ import slide7 from '../assets/img/tennistee.jpg'
 
 export type ProductType = 'Обувь' | 'Футболки' | 'Худи';
 export type ProductYear = 2023 | 2024 | 2025;
+export type ProductColor = 'Черный' | 'Белый' | 'Несколько цветов' | 'Зеленый';
 
 export interface Product {
   id: number;
@@ -15,6 +16,8 @@ export interface Product {
   title: string;
   type: ProductType;
   year: ProductYear;
+  price: number;
+  color : ProductColor;
 }
 
 export const slides = [
@@ -28,6 +31,8 @@ export const productsData: Product[] = [
     title: 'Nike Air Max',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Белый',
   },
   {
     id: 1,
@@ -35,6 +40,8 @@ export const productsData: Product[] = [
     title: 'Converse Classic',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Черный',
   },
   {
     id: 2,
@@ -42,6 +49,8 @@ export const productsData: Product[] = [
     title: 'Rick Owens DRKSHDW',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Черный',
   },
   {
     id: 3,
@@ -49,6 +58,8 @@ export const productsData: Product[] = [
     title: 'Kobe 6 Grinch',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Черный',
   },
   {
     id: 4,
@@ -56,6 +67,8 @@ export const productsData: Product[] = [
     title: 'Kobe 6 Grinch',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Зеленый',
   },
   {
     id: 5,
@@ -63,6 +76,8 @@ export const productsData: Product[] = [
     title: 'Kobe 6 Grinch',
     type: 'Обувь',
     year: 2025,
+    price: 200,
+    color: 'Черный',
   },
   {
     id: 6,
@@ -70,5 +85,7 @@ export const productsData: Product[] = [
     title: 'Nike Tee',
     type: 'Футболки',
     year: 2024,
+    price: 200,
+    color: 'Черный',
   },
 ];

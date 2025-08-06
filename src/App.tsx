@@ -10,7 +10,8 @@ import { Slider } from './components/Slider'
 import { Goods } from './components/Goods'
 
 import { NewGoods } from './components/NewGoods'
-import { productsData, slides} from "./data/productsData.tsx";
+import { productsData, slides} from "./data/ProductsData.tsx";
+import { ProductPage } from './components/ProductPage.tsx';
 
 
 function HomePage() {
@@ -90,6 +91,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>
