@@ -3,7 +3,6 @@ import { productsData } from "../data/ProductsData";
 import { Link } from "react-router-dom";
 import { Header } from '../components/Header';
 import { NavbarRegistration } from '../components/NavbarRegistration';
-import { Navbar } from '../components/Navbar';
 
 export const Catalog = () => {
   const [selectedType, setSelectedType] = useState<string>("Все");

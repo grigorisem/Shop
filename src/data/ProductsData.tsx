@@ -5,20 +5,7 @@ import slide4 from '../assets/img/converse.webp';
 import slide5 from '../assets/img/rickowens.webp';
 import slide6 from '../assets/img/kobe6grinch.jpg';
 import slide7 from '../assets/img/tennistee.jpg'
-
-export type ProductType = 'Обувь' | 'Футболки' | 'Худи';
-export type ProductYear = 2023 | 2024 | 2025;
-export type ProductColor = 'Черный' | 'Белый' | 'Несколько цветов' | 'Зеленый';
-
-export interface Product {
-  id: number;
-  image: string;
-  title: string;
-  type: ProductType;
-  year: ProductYear;
-  price: number;
-  color : ProductColor;
-}
+import type {ProductType, ProductYear, ProductColor, Product } from '../types/ProductType';
 
 export const slides = [
   slide1, slide2, slide3, slide4, slide5, slide6, slide7

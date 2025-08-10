@@ -1,7 +1,6 @@
 import { productsData} from "../data/ProductsData";
 import { Header } from '../components/Header'
 import { NavbarRegistration } from '../components/NavbarRegistration'
-import { Navbar } from '../components/Navbar'
 import { useParams } from "react-router-dom";
 
 export const ProductPage = () => {

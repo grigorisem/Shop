@@ -1,6 +1,5 @@
 import { useState } from 'react'
-
-type NavItem = 'Коллабы' | 'Мужское' | 'Женское' | null;
+import type { NavItem } from '../types/ProductType';
 
 const dropdownContent: Record<Exclude<NavItem, null>, string[]> = {
   'Коллабы': ['Дропы 2025', 'Дропы 2024', 'Дропы 2023'],
