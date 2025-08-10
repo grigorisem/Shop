@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {Catalog} from "./pages/Catalog.tsx";
 //import ProductPage from "./pages/ProductPage";
 //import NotFound from "./pages/NotFound";
-
+import { Link } from 'react-router-dom';
 import { Header } from './components/Header'
 import { NavbarRegistration } from './components/NavbarRegistration'
 import { Slider } from './components/Slider'
@@ -50,9 +50,12 @@ function HomePage() {
               <div className="absolute bottom-[60px] left-[30px] text-white text-lg font-semibold bg-black/60 px-3 py-1 rounded">
                 {item.title}
               </div>
-              <button className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+              <Link 
+                to={`/product/${item.id}`} 
+                className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
+              >
                 Подробнее
-              </button>
+              </Link>
             </div>
           ))
         }
@@ -74,9 +77,12 @@ function HomePage() {
               <div className="absolute bottom-[60px] left-[30px] text-white text-lg font-semibold bg-black/60 px-3 py-1 rounded">
                 {item.title}
               </div>
-              <button className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+              <Link 
+                to={`/product/${item.id}`} 
+                className="absolute bottom-[20px] left-[30px] px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
+              >
                 Подробнее
-              </button>
+              </Link>
             </div>
           ))
         }
