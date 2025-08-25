@@ -1,86 +1,57 @@
 import { useState } from "react";
-import { API_URL } from "../services/authApi";
+import { register } from "../api/auth";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-export function RegisterPage() {
+export default function RegisterPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  async function handleRegister(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-
-    if (password !== confirmPassword) {
-      setError("Пароли не совпадают");
-      return;
+  const handleSubmit = async () => {
+    const data = await register(name, email, password);
+    if (data && data.id) {
+      login(data.token ?? "", name); // если сервер возвращает токен
+      navigate("/");
+    } else {
+      alert("Ошибка регистрации");
     }
-
-    try {
-      const res = await fetch(`${API_URL}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error(`Ошибка: ${res.status}`);
-      }
-
-      const data = await res.json();
-      setSuccess(data.message || "Регистрация успешна");
-    } catch (err: any) {
-      setError(err.message);
-    }
-  }
+  };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleRegister}
-        className="bg-white p-6 rounded shadow-md w-96"
-      >
-        <h2 className="text-2xl font-bold mb-4">Регистрация</h2>
-
-        {error && <div className="bg-red-100 text-red-700 p-2 mb-3 rounded">{error}</div>}
-        {success && <div className="bg-green-100 text-green-700 p-2 mb-3 rounded">{success}</div>}
-
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-md w-96">
+        <h2 className="text-xl font-bold mb-4">Регистрация</h2>
+        <input
+          type="text"
+          placeholder="Имя"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full mb-2 p-2 border rounded"
+        />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 w-full mb-3 rounded"
-          required
+          className="w-full mb-2 p-2 border rounded"
         />
-
         <input
           type="password"
           placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full mb-3 rounded"
-          required
+          className="w-full mb-4 p-2 border rounded"
         />
-
-        <input
-          type="password"
-          placeholder="Подтверждение пароля"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          className="border p-2 w-full mb-4 rounded"
-          required
-        />
-
         <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white p-2 w-full rounded"
+          onClick={handleSubmit}
+          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600"
         >
           Зарегистрироваться
         </button>
-      </form>
+      </div>
     </div>
   );
 }
