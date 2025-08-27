@@ -1,17 +1,22 @@
-import { useState } from "react";
-import { productsData } from "../data/ProductsData";
+import { useState, useEffect } from "react";
+import { getProducts } from "../api/products";
 import { Link } from "react-router-dom";
 import { Header } from '../components/Header';
 import { NavbarRegistration } from '../components/NavbarRegistration';
 
 export const Catalog = () => {
-  const [selectedType, setSelectedType] = useState<string>("Все");
-  const [selectedYear, setSelectedYear] = useState<string>("Все");
+  const [products, setProducts] = useState<any[]>([]);
+  const [selectedType, setSelectedType] = useState("Все");
+  const [selectedYear, setSelectedYear] = useState("Все");
 
-  const uniqueTypes = Array.from(new Set(productsData.map((item) => item.type)));
-  const uniqueYears = Array.from(new Set(productsData.map((item) => item.year)));
+  useEffect(() => {
+    getProducts().then(setProducts).catch(console.error);
+  }, []);
 
-  const filteredGoods = productsData.filter((item) => {
+  const uniqueTypes = Array.from(new Set(products.map((item) => item.type)));
+  const uniqueYears = Array.from(new Set(products.map((item) => item.year)));
+
+  const filteredGoods = products.filter((item) => {
     const typeMatches = selectedType === "Все" || item.type === selectedType;
     const yearMatches = selectedYear === "Все" || String(item.year) === selectedYear;
     return typeMatches && yearMatches;
@@ -76,7 +81,7 @@ export const Catalog = () => {
                 className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition"
               >
                 <img
-                  src={item.image}
+                  src={item.imageUrl}
                   alt={item.title}
                   className="w-full h-64 object-cover"
                 />

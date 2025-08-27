@@ -20,4 +20,5 @@ export interface Product {
   year: ProductYear;
   price: number;
   color : ProductColor;
+  imageUrl: string; // <-- добавляем
 }

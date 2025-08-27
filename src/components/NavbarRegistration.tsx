@@ -28,7 +28,7 @@ export const NavbarRegistration = () => {
                             </Link>
                             <div className="border h-[15px] border-r border-solid border-r-black self-center"></div>
                             <Link
-                                to={'/signup'}
+                                to={'/register'}
                             >
                                 Sign Up
                             </Link>
