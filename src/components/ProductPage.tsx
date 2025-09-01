@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import { getProducts } from "../api/products";
 import { NavbarRegistration } from "../components/NavbarRegistration";
 import { Header } from "../components/Header";
+import { useCart } from "../context/CartContext";
 
 export const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<any | null>(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     getProducts().then((products) => {
@@ -38,7 +40,11 @@ export const ProductPage = () => {
             <p className="text-2xl font-semibold text-green-600 mt-4">
               {product.price}$
             </p>
-            <button className="mt-6 px-6 py-2 bg-black text-white rounded hover:bg-gray-800">
+
+            <button
+              onClick={() => addToCart(product)} // 👈 добавили обработчик
+              className="mt-6 px-6 py-2 bg-black text-white rounded hover:bg-gray-800"
+            >
               В корзину
             </button>
           </div>

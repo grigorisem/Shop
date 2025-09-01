@@ -13,6 +13,8 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import { getProducts } from "./api/products";
 import type { Product } from "./types/ProductType";
+import { CartProvider } from "./context/CartContext";
+import { Checkout } from "./pages/Checkout";
 
 function HomePage() {
   const { userName } = useAuth();
@@ -109,16 +111,19 @@ function HomePage() {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
+      <CartProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/checkout" element={<Checkout/> }/>
+              {/* <Route path="*" element={<NotFound />} /> */}
+            </Routes>
       </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }
