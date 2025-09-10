@@ -1,3 +1,4 @@
+// src/context/AuthContext.tsx
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { saveToken, getToken, logout as removeToken } from "../api/auth";
 
@@ -10,11 +11,9 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(getToken());
-  const [userName, setUserName] = useState<string | null>(
-    localStorage.getItem("userName")
-  );
+  const [userName, setUserName] = useState<string | null>(localStorage.getItem("userName"));
 
   const handleLogin = (newToken: string, name: string) => {
     saveToken(newToken);
@@ -35,10 +34,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within AuthProvider");
-  return context;
-}
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
+};

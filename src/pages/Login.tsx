@@ -10,39 +10,28 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    const data = await loginRequest(name, password);
-    if (data.access_token) {
-      saveLogin(data.access_token, name);
-      navigate("/");
-    } else {
-      alert("Ошибка входа");
+    try {
+      const data = await loginRequest(name, password);
+      if (data.access_token) {
+        saveLogin(data.access_token, name);
+        navigate("/");
+      } else {
+        alert("Ошибка входа");
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert(err.message || "Ошибка входа");
     }
   };
 
   return (
+    /* твой UI */
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-xl font-bold mb-4">Вход</h2>
-        <input
-          type="text"
-          placeholder="Имя"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full mb-2 p-2 border rounded"
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 p-2 border rounded"
-        />
-        <button
-          onClick={handleSubmit}
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-        >
-          Войти
-        </button>
+        <input type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className="w-full mb-2 p-2 border rounded" />
+        <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full mb-4 p-2 border rounded" />
+        <button onClick={handleSubmit} className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Войти</button>
       </div>
     </div>
   );

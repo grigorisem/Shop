@@ -12,7 +12,7 @@ export const Goods = ({ children }: GoodsProps) => {
         {Children.toArray(children).map((item, index) => (
           <div
             key={`goods-${index}`}
-            className="w-full h-[400px] bg-gray-50 rounded-lg overflow-hidden"
+            className="w-full h-[500px] bg-gray-50 rounded-lg overflow-hidden"
           >
             {item}
           </div>

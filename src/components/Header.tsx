@@ -3,12 +3,13 @@ import shoppingCart from "../assets/img/shopping-cart.png";
 import { useCart } from "../context/CartContext"; 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export const Header = () => {
   const { cartItems, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
   const [open, setOpen] = useState(false);
-
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const { userName } = useAuth();
 
   return (
     <div className="header">
@@ -20,7 +21,14 @@ export const Header = () => {
         <nav className="navbar">
           <Navbar />
         </nav>
-
+         {userName && (
+        <Link
+          to="/orders"
+          className="inline-block bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600"
+        >
+          Мои заказы
+        </Link>
+      )}
         <div className="relative">
           <button
             className="relative"

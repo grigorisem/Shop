@@ -1,15 +1,39 @@
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 import { NavbarRegistration } from "../components/NavbarRegistration";
 import { Header } from "../components/Header";
 
 export const Checkout = () => {
-  const { cartItems, clearCart, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
+  const { cartItems, clearCart } = useCart();
+  const { token } = useAuth();
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const handleCheckout = () => {
-    alert("Чек создан! Сумма: " + total + "$");
-    clearCart();
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // 👈 важно
+        },
+        body: JSON.stringify({
+          items: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Ошибка при создании заказа");
+
+      const data = await response.json();
+      alert(`Чек создан! Сумма: ${data.total}$ (ID заказа: ${data.id})`);
+      clearCart();
+    } catch (error) {
+      console.error(error);
+      alert("Ошибка при оформлении заказа");
+    }
   };
 
   return (
@@ -18,51 +42,17 @@ export const Checkout = () => {
       <Header />
       <div className="p-8 max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Корзина</h1>
-
         {cartItems.length === 0 ? (
           <p className="text-gray-500">Корзина пуста</p>
         ) : (
-          <div className="space-y-4">
+          <div>
             {cartItems.map((item) => (
-              <div
-                key={item.id}
-                className="flex justify-between items-center border-b pb-2"
-              >
-                <div>
-                  <p className="font-semibold">{item.title}</p>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <button
-                      onClick={() => decreaseQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 rounded"
-                    >
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button
-                      onClick={() => increaseQuantity(item.id)}
-                      className="px-2 py-1 bg-gray-200 rounded"
-                    >
-                      +
-                    </button>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="ml-4 text-red-500 hover:underline"
-                    >
-                      Удалить
-                    </button>
-                  </div>
-                </div>
-                <p className="text-lg font-bold">
-                  {item.price * item.quantity}$
-                </p>
+              <div key={item.id} className="flex justify-between items-center mb-4">
+                <span>{item.title} x {item.quantity}</span>
+                <span>{item.price * item.quantity}$</span>
               </div>
             ))}
-
-            <div className="flex justify-between items-center mt-6">
-              <p className="text-xl font-bold">Итого:</p>
-              <p className="text-2xl font-bold text-green-600">{total}$</p>
-            </div>
-
+            <p className="text-xl font-bold mt-4">Итого: {total}$</p>
             <button
               onClick={handleCheckout}
               className="mt-6 w-full bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600"

@@ -11,6 +11,8 @@ import { NewGoods } from "./components/NewGoods";
 import { ProductPage } from "./components/ProductPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import  Orders  from "./pages/Orders";
+import { OrderDetails } from "./pages/OrderDetails";
 import { getProducts } from "./api/products";
 import type { Product } from "./types/ProductType";
 import { CartProvider } from "./context/CartContext";
@@ -121,6 +123,8 @@ function App() {
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/checkout" element={<Checkout/> }/>
               {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/orders/:id" element={<OrderDetails />} />
             </Routes>
       </Router>
       </CartProvider>

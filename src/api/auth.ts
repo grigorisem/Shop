@@ -1,36 +1,33 @@
+// src/api/auth.ts
 export const API_URL = "http://localhost:3000";
 
-// Сохранение токена
 export const saveToken = (token: string) => {
   localStorage.setItem("token", token);
 };
-
-// Получение токена
-export const getToken = () => {
-  return localStorage.getItem("token");
-};
-
-// Удаление токена
+export const getToken = () => localStorage.getItem("token");
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("userName");
 };
 
-// Регистрация
 export const register = async (name: string, email: string, password: string) => {
   const res = await fetch(`${API_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, password })
   });
-  return res.json();
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.message || 'Registration failed');
+  return data; // ожидаем { access_token, user }
 };
 
-// Логин
 export const login = async (name: string, password: string) => {
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, password })
   });
-  return res.json();
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.message || 'Login failed');
+  return data; // { access_token }
 };
